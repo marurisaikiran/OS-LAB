@@ -1,22 +1,16 @@
 #include <iostream>
-#include <cstdio>   // for remove()
-
+#include <unistd.h>
 using namespace std;
 
-int main(int argc, char* argv[]) {
-    // Check if filename is provided
-    if (argc < 2) {
-        cout << "Usage: ./rm <filename>" << endl;
-        return 1;
-    }
+int main() {
+    string filename;
+    cout << "Enter filename: ";
+    cin >> filename;
 
-    // Attempt to delete the file
-    if (remove(argv[1]) == 0) {
-        cout << "File deleted successfully" << endl;
-    } else {
-        cout << "Error deleting file" << endl;
-    }
+    if (unlink(filename.c_str()) == 0)
+        cout << "File deleted successfully\n";
+    else
+        cout << "Error deleting file\n";
 
     return 0;
 }
-
